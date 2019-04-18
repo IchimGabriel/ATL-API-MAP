@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.28809.33
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATLAPI", "ATLAPI\ATLAPI.csproj", "{0994FC70-3DE7-47FE-8111-CBAAEEC10CE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATLAPI.Test", "ATLAPI.Test\ATLAPI.Test.csproj", "{DDE68036-D132-402D-9C7C-46556B120D4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATLAPI.Tests", "ATLAPI.Test\ATLAPI.Tests.csproj", "{DDE68036-D132-402D-9C7C-46556B120D4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{B8904E1F-55B2-488B-9748-FB2171475B5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{315C53BE-C34D-4747-AD5E-011FB8E51EC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2F3BE819-1258-4792-94ED-9CD74DB528DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +30,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0994FC70-3DE7-47FE-8111-CBAAEEC10CE0} = {315C53BE-C34D-4747-AD5E-011FB8E51EC8}
+		{DDE68036-D132-402D-9C7C-46556B120D4B} = {2F3BE819-1258-4792-94ED-9CD74DB528DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01DEDE3A-7C91-4007-9CBC-636DD188B4AC}
