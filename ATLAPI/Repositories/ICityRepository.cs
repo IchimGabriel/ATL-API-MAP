@@ -9,7 +9,7 @@ namespace ATLAPI.Repositories
 {
     public interface ICityRepository
     {
-        Task<IEnumerable<IRecord>> GetAllCities();
+        Task<IEnumerable<City>> GetAllCities();
         Task<IEnumerable<IRecord>> FindShortestPathAsync();
         Task<IEnumerable<IRecord>> TruckConnectedCityNeighbours();
         Task<IEnumerable<IRecord>> FindSPathAsync(string departureCity, string arrivalCity, string relation, int noNodes);

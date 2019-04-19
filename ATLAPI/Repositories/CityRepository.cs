@@ -1,5 +1,6 @@
 ﻿using ATLAPI.Models.Neo4j;
 using Neo4j.Driver.V1;
+using Neo4jClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +21,21 @@ namespace ATLAPI.Repositories
         /// RETURN ALL NODES(CITIES) IN DATABASE
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<IRecord>> GetAllCities()
+        public async Task<IEnumerable<City>> GetAllCities()
         {
-            var session = _db.Driver.Session();
+            var _client = new BoltGraphClient(new Uri("bolt://atlasff.ovh:7687"), "neo4j", "");
+            _client.Connect();
             try
             {
-                var result = session.ReadTransaction(tx => tx
-                .Run("MATCH (n:city) RETURN n"));
+                var query = (await _client.Cypher
+                       .Match("(city:city)")
+                       .Return(city => city.As<City>())
+                       .ResultsAsync);
 
-                return result;
+                return query;
             }
             catch (Exception e) { throw new SystemException(e.Message); }
-            finally { await session.CloseAsync(); }
+            finally { _client.Dispose(); }
         }
 
         /// <summary>
