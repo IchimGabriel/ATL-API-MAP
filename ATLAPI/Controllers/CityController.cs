@@ -21,17 +21,16 @@ namespace ATLAPI.Controllers
         }
 
         /// <summary>
-        /// GET: api/City
+        /// GET: api/cities
         /// </summary>
         /// <returns>ALL CITIES AS NODES</returns> 
         [Route("/api/cities")]
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetCities()
         {
-            var city = await db.GetAllCities();
-            return Ok(city.ToList());
+            var cities = await db.GetAllCities();
+            return Ok(cities.ToList());
         }
-
 
         /// <summary>
         /// GET: Conected by TRUCK Cities - neighbours
