@@ -3,12 +3,11 @@ using Neo4j.Driver.V1;
 using Neo4jClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ATLAPI.Repositories
 {
-    public class CityRepository: ICityRepository
+    public class CityRepository: ICityRepository, IDisposable
     {
         private readonly IGraphRepository _db;
 
@@ -23,8 +22,8 @@ namespace ATLAPI.Repositories
         /// <returns></returns>
         public async Task<IEnumerable<City>> GetAllCities()
         {
-            var _client = new BoltGraphClient(new Uri("bolt://atlasff.ovh:7687"), "neo4j", "");
-            _client.Connect();
+            var _client = new BoltGraphClient(_db.Driver);
+            await _client.ConnectAsync();
             try
             {
                 var query = (await _client.Cypher
@@ -35,7 +34,7 @@ namespace ATLAPI.Repositories
                 return query;
             }
             catch (Exception e) { throw new SystemException(e.Message); }
-            finally { _client.Dispose(); }
+            finally { }     //await CloseAsync();    can not close _client - as the _db get dispose - implemented IDisposable for releasing unmanage resources
         }
 
         /// <summary>
@@ -64,7 +63,7 @@ namespace ATLAPI.Repositories
         /// <summary>
         /// Query - SHORTEST PATH BETWEEN TWO CITY
         /// </summary>
-        /// <returns>Test</returns>
+        /// <returns>Test Shortest path</returns>
         public async Task<IEnumerable<IRecord>> FindShortestPathAsync()
         {
             var session = _db.Driver.Session();
@@ -93,7 +92,7 @@ namespace ATLAPI.Repositories
             try
             {
                 var result = session.ReadTransaction(tx => tx
-                .Run("MATCH p = (a:city {name:'" + departureCity + "'})-[r:" + relation + "*1.." + noNodes + "]-(b:city {name:'" + arrivalCity + "'})" +
+                .Run("MATCH p = (a:city {name:'"+ departureCity +"'})-[r:"+ relation +"*1.."+ noNodes +"]-(b:city {name:'"+ arrivalCity +"'})" +
                                 " RETURN extract(n IN nodes(p) | n.name) AS Cities," +
                                 " reduce(distance = 0, r IN relationships(p) | distance + r.distance) AS TravelDistance" +
                                 " ORDER BY TravelDistance ASC"));
@@ -122,7 +121,7 @@ namespace ATLAPI.Repositories
             try
             {
                 var result = session.WriteTransaction(tx => tx
-                .Run("CREATE(" + city + ": city{ name: '" + city + "', iso: '" + iso + "', lat: " + lat + " , lng: " + lng + ", port_city: " + is_port + ", turnaround: " + turnaround + "})"));
+                .Run("CREATE(" + city + ":city{ name:'"+ city +"',iso:'"+ iso +"',lat:"+ lat +",lng:"+ lng +",port_city:"+ is_port +",turnaround:"+ turnaround +"})"));
 
                 return true;
             }
@@ -149,13 +148,18 @@ namespace ATLAPI.Repositories
             {
                 var result = session.WriteTransaction(tx => tx
                 .Run("MATCH (a:city), (b:city) WHERE a.name = '" + fromCity + "' AND b.name = '" + toCity + "' " +
-                "CREATE(a) -[r: " + media + " { distance: " + distance + ", price: " + price + ", cotwo: " + cotwo + ", speed: " + speed + "}]->(b)"));
+                "CREATE(a) -[r:"+ media +" { distance:"+ distance + ",price:"+ price +",cotwo:"+ cotwo +",speed:"+ speed +"}]->(b)"));
 
                 return true;
             }
             catch (ServiceUnavailableException) { return false; }  // the driver is no longer able to establish communication with the server, even after retries - networking or DB problem
             finally
             { await session.CloseAsync(); }
+        }
+
+        public void Dispose()
+        {
+            _db?.Driver.Dispose();
         }
     }
 }

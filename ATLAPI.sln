@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28809.33
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATLAPI", "ATLAPI\ATLAPI.csproj", "{0994FC70-3DE7-47FE-8111-CBAAEEC10CE0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATLAPI.Tests", "ATLAPI.Test\ATLAPI.Tests.csproj", "{DDE68036-D132-402D-9C7C-46556B120D4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATLAPI", "src\ATL.API\ATLAPI.csproj", "{0994FC70-3DE7-47FE-8111-CBAAEEC10CE0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{B8904E1F-55B2-488B-9748-FB2171475B5E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{315C53BE-C34D-4747-AD5E-011FB8E51EC8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2F3BE819-1258-4792-94ED-9CD74DB528DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATL.API.Tests", "tests\ATL.API.Tests\ATL.API.Tests.csproj", "{2CD4CB69-FA59-45B2-9292-E7CA02C35A74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,17 +23,17 @@ Global
 		{0994FC70-3DE7-47FE-8111-CBAAEEC10CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0994FC70-3DE7-47FE-8111-CBAAEEC10CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0994FC70-3DE7-47FE-8111-CBAAEEC10CE0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDE68036-D132-402D-9C7C-46556B120D4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDE68036-D132-402D-9C7C-46556B120D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDE68036-D132-402D-9C7C-46556B120D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DDE68036-D132-402D-9C7C-46556B120D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD4CB69-FA59-45B2-9292-E7CA02C35A74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD4CB69-FA59-45B2-9292-E7CA02C35A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD4CB69-FA59-45B2-9292-E7CA02C35A74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD4CB69-FA59-45B2-9292-E7CA02C35A74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0994FC70-3DE7-47FE-8111-CBAAEEC10CE0} = {315C53BE-C34D-4747-AD5E-011FB8E51EC8}
-		{DDE68036-D132-402D-9C7C-46556B120D4B} = {2F3BE819-1258-4792-94ED-9CD74DB528DE}
+		{2CD4CB69-FA59-45B2-9292-E7CA02C35A74} = {2F3BE819-1258-4792-94ED-9CD74DB528DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01DEDE3A-7C91-4007-9CBC-636DD188B4AC}
