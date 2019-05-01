@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["ATLAPI/ATLAPI.csproj", "ATLAPI/"]
-RUN dotnet restore "ATLAPI/ATLAPI.csproj"
+COPY ["ATL.API/ATLAPI.csproj", "ATL.API/"]
+RUN dotnet restore "ATL.API/ATLAPI.csproj"
 COPY . .
-WORKDIR "/src/ATLAPI"
+WORKDIR "/src/ATL.API"
 RUN dotnet build "ATLAPI.csproj" -c Release -o /app
 
 FROM build AS publish
