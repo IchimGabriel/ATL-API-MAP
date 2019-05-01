@@ -9,10 +9,10 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim
 WORKDIR /app
 
-COPY --from=builder /app/out/ .
+COPY --from=build /app/out/ .
 
 ENV ASPNETCORE_URLS http://*:5002
 ENV ASPNETCORE_ENVIRONMENT docker
