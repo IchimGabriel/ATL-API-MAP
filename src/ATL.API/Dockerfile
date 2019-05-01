@@ -16,5 +16,5 @@ RUN dotnet publish "ATLAPI.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=obj/publish /app .
 ENTRYPOINT ["dotnet", "ATLAPI.dll"]

@@ -14,7 +14,7 @@ RUN dotnet publish "ATLAPI.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=obj/publish /app .
 
 ENV ASPNETCORE_URLS http://*:5002
 ENV ASPNETCORE_ENVIRONMENT docker
