@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:57862",
-      "sslPort": 44311
+      "applicationUrl": "http://localhost:5002",
+      "sslPort": 0
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -12,27 +12,19 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",          //"api/values",
+      "launchUrl": "swagger",        
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "local"
       }
     },
     "ATLAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",           //"api/values",
+      "launchUrl": "swagger",          
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "local"
       },
-      "applicationUrl": "https://localhost:5003;http://localhost:5002"
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger/",
-      "httpPort": 57863,
-      "useSSL": true,
-      "sslPort": 44312
+      "applicationUrl": "http://localhost:5002"
     }
   }
 }
