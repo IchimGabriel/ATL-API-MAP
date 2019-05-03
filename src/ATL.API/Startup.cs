@@ -55,7 +55,7 @@ namespace ATLAPI
         {
             app.UseSwagger();
 
-            if (env.IsDevelopment() || env.IsStaging())
+            if (env.IsDevelopment() || env.EnvironmentName == "local")
             {
 
                 app.UseSwaggerUI(options =>
@@ -71,10 +71,10 @@ namespace ATLAPI
             else
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+               // app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

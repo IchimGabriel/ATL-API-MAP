@@ -1,20 +1,19 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
 WORKDIR /app
+EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
-WORKDIR /src
-COPY ["ATL.API/ATLAPI.csproj", "ATL.API/"]
-RUN dotnet restore "ATL.API/ATLAPI.csproj"
-COPY . .
-WORKDIR "/src/ATL.API"
-RUN dotnet build "ATLAPI.csproj" -c Release -o /app
+
+COPY . ./
+WORKDIR /src/ATL.API
+RUN dotnet build ATLAPI.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "ATLAPI.csproj" -c Release -o /app
+RUN dotnet publish ATLAPI.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
-COPY --from=obj/publish /app .
+COPY --from=publish /app .
 
 ENV ASPNETCORE_URLS http://*:5002
 ENV ASPNETCORE_ENVIRONMENT docker
