@@ -14,6 +14,6 @@ namespace ATLAPI.Controllers
     {
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Get() => Ok("ATL API");
+        public IActionResult Get() => Ok("ATL MAP API");
     }
 }

@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ATLAPI.Data;
-using ATLAPI.Repositories;
+﻿using ATLAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -42,11 +33,8 @@ namespace ATLAPI
             // available queries for controllers
             services.AddSingleton<ICityRepository, CityRepository>();
 
-            // connection to MSQLS Server
-            services.AddDbContext<ShipmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
-            services.AddSwaggerGen(options => options.SwaggerDoc("v1", new Info { Title = "Advanced Transport and Logistics – Freight Forwarding (ATL-FF)", Version = "v1" }));
+            services.AddSwaggerGen(options => options.SwaggerDoc("v1", new Info { Title = "Advanced Transport and Logistics – FF (ATL-MAP-API)", Version = "v1" }));
 
         }
 

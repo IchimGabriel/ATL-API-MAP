@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ATLAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,7 @@ namespace ATLAPI.Controllers
         /// <returns>ALL CITIES AS NODES</returns> 
         [Route("/api/cities")]
         [HttpGet]
+        //[Authorize]
         public async Task<IActionResult> GetCities()
         {
             var cities = await db.GetAllCities();
@@ -69,10 +71,10 @@ namespace ATLAPI.Controllers
         /// <param name="fromCity"></param>
         /// <param name="toCity"></param>
         /// <param name="media"></param>
-        /// <param name="distance"></param>
-        /// <param name="price"></param>
-        /// <param name="cotwo"></param>
-        /// <param name="speed"></param>
+        /// <param name="distance">KM</param>
+        /// <param name="price">€/KM</param>
+        /// <param name="cotwo">GR/KM</param>
+        /// <param name="speed">KM/H</param>
         /// <returns></returns>
         [Route("/api/create/edge/{fromCity}/{toCity}/{media}/{distance}/{price}/{cotwo}/{speed}")]
         [HttpPost]
