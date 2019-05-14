@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ATLAPI.Models.Neo4j;
 using ATLAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,8 @@ namespace ATLAPI.Controllers
         /// <returns>ALL CITIES AS NODES</returns> 
         [Route("/api/cities")]
         [HttpGet]
+        [ProducesResponseType(typeof(City), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         //[Authorize]
         public async Task<IActionResult> GetCities()
         {
@@ -40,6 +43,8 @@ namespace ATLAPI.Controllers
         /// <returns></returns>
         [Route("/api/neighbours")]
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetConnectedCities()
         {
             var req = await db.TruckConnectedCityNeighbours();
@@ -58,6 +63,8 @@ namespace ATLAPI.Controllers
         /// <returns></returns>
         [Route("/api/create/{city}/{iso}/{lat}/{lng}/{is_port}/{turnaround}")]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateNewNode(string city, string iso, float lat, float lng, bool is_port, int turnaround)
         {
             var req = db.CreateNode(city, iso, lat, lng, is_port, turnaround);
@@ -78,6 +85,8 @@ namespace ATLAPI.Controllers
         /// <returns></returns>
         [Route("/api/create/edge/{fromCity}/{toCity}/{media}/{distance}/{price}/{cotwo}/{speed}")]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateEdge(string fromCity, string toCity, string media, int distance, decimal price, float cotwo, int speed)
         {
             var req = db.CreateEdge(fromCity, toCity, media, distance, price, cotwo, speed);

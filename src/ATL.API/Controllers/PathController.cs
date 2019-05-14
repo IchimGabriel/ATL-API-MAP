@@ -26,6 +26,8 @@ namespace ATLAPI.Controllers
         /// <returns></returns>
         [Route("/api/shortpath")]
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetShortesrPath()
         {
             var result = await _db.FindShortestPathAsync();
@@ -42,6 +44,8 @@ namespace ATLAPI.Controllers
         /// <returns> List of Shortest Paths between cities</returns>
         [Route("/api/spath/{departure}/{arrival}/{media}/{nrnodes}")]
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetSPath(string departure, string arrival, string media, int nrnodes)
         {
             var result = await _db.FindSPathAsync(departure, arrival, media, nrnodes);

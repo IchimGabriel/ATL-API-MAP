@@ -34,8 +34,17 @@ namespace ATLAPI
             services.AddSingleton<ICityRepository, CityRepository>();
 
 
-            services.AddSwaggerGen(options => options.SwaggerDoc("v1", new Info { Title = "Advanced Transport and Logistics – FF (ATL-MAP-API)", Version = "v1" }));
-
+            services.AddSwaggerGen(options => 
+                options.SwaggerDoc("v1", new Info {
+                    Title = "Advanced Transport and Logistics – FF (ATL-MAP-API)",
+                    Version = "v1",
+                    Contact = new Contact
+                    {
+                        Name = "Gabriel Ichim",
+                        Email = "ichimgabriel75@gmail.com",
+                        Url = "https://codexapi.com"
+                    }
+                }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,17 +52,11 @@ namespace ATLAPI
         {
             app.UseSwagger();
 
-            if (env.IsDevelopment() || env.EnvironmentName == "local")
+            if (env.IsDevelopment())
             {
-
                 app.UseSwaggerUI(options =>
                         options.SwaggerEndpoint("/swagger/v1/swagger.json", "ATL-FF v1")
                 );
-
-            }
-
-            if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
             }
             else

@@ -1,19 +1,16 @@
 ﻿
-using AutoFixture;
-using FluentAssertions;
 using Moq;
-using Newtonsoft.Json;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xunit;
 
 namespace ATLAPI.Tests.Controllers
 {
     public class CityControllerTests
     {
 
-        [Fact]
+        [Test]
         public async Task given_valid_query_get_should_return_cities()
         {
             
